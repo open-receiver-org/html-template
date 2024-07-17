@@ -6,3 +6,6 @@ output
 sample
 coverage
 __transpiled
+
+# just to avoid constant requests for git updating it
+package.json
