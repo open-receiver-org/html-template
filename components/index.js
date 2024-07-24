@@ -38,66 +38,95 @@ export function Index({ asyncapi, params = {} }) {
       .justify-between {
         justify-content: space-between;
       }
+
       .sr-only {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border-width: 0;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      .burger {
+        display: none;
+      }
+
+      @media (max-width: 1024px) {
+        .nav-list {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          text-align: center;
+          background-color: #333;
+        }
+
+        .nav-list.active {
+          display: flex;
+        }
+
+        .burger {
+          display: flex;
+        }
       }
     </style>
     <head>
       <meta charset="UTF-8">
       ${basehref}
       <title>${asyncapi.info().title()} ${asyncapi
-    .info()
-    .version()} documentation</title>
+      .info()
+      .version()} documentation</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="icon" type="image/x-icon" href="${favicon}" />
       ${styling}
     </head>
   
     <body>
-      <section class="aui-root">
-        <header class="px-8 max-w-none flex items-center justify-between bg-gray-800 text-white text-center">
-          <a href="https://open-receiver.org/" class="flex items-center space-x-2 rtl:space-x-reverse">
+        <section class="aui-root">
+          <header class="h-16 panel--center px-8 w-full flex items-center justify-between bg-gray-800 text-white md:flex">
+            <a href="https://open-receiver.org/" class="flex items-center space-x-2 rtl:space-x-reverse">
               <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="flowbite Logo">
               <span class="self-center text-2xl dark:text-white"><object data="" type=""></object>open-receiver.org</span>
-          </a>
-          <div class="flex p-4 space-x-2 md:space-x-0 rtl:space-x-reverse" id="navbar-sticky">
-              <!-- <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky"> -->
+            </a>
 
-            <ul class="flex flex-col p-4 md:p-0 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800">
-              <li>
-                <a href="/" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-600 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
-              </li>
-              <li>
-                <a href="/" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-800">About</a>
-              </li>
-              <li>
-                <a href="/" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-800">Services</a>
-              </li>
-              <li>
-                <a href="/" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-800 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-800">Contact</a>
-              </li>
-            </ul>
-          </div>
-          <div class="flex space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <button type="button" class="text-white bg-blue-600 hover:bg-blue-400 rounded focus:ring-4 focus:outline-none focus:ring-blue-400 font-medium text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
-            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-              <span class="sr-only">Open main menu</span>
-              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            <div class="nav-list bg-gray-800">
+              <ul class="flex p-4 md:p-0 font-medium">
+                <li>
+                  <a href="/" class="block px-3">Home</a>
+                </li>
+                <li>
+                  <a href="/" class="block px-3">About</a>
+                </li>
+                <li>
+                  <a href="/" class="block px-3">Service</a>
+                </li>
+                <li>
+                  <a href="/" class="block px-3">Contact</a>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-list bg-gray-800">
+              <button type="button"
+              class="text-white bg-blue-600 hover:bg-blue-400 rounded focus:ring-4 focus:outline-none focus:ring-blue-400 font-medium text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Get started
+             </button>
+            </div>
+            <div class="burger" id="burger">
+              <svg viewBox="0 0 100 70" width="40" height="30" class="fill-current text-gray-200">
+                <rect width="100" height="10"></rect>
+                <rect y="30" width="100" height="10"></rect>
+                <rect y="60" width="100" height="10"></rect>
               </svg>
-            </button>  
-          </div>
-        </header>
-      </section>
-      <div id="root">
+            </div>
+            </button>
+            </div>
+            </div>
+          </header>
+        </section>
+     <div id="root">
       ${renderedSpec}      
  
   
